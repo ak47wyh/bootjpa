@@ -1,11 +1,13 @@
 package com.example.bootjpa.web;
 
 import com.example.bootjpa.dao.PersonRepository;
+import com.example.bootjpa.dao.cust.Person2Repository;
 import com.example.bootjpa.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,6 +61,14 @@ public class JpaControll {
     @RequestMapping("/page")
     public Page<Person> page(){
         Page<Person> people = personRepository.findAll(new PageRequest(1,2));
+        return people;
+    }
+
+    @Autowired
+    private Person2Repository person2Repository;
+    @RequestMapping("/auto")
+    public Page<Person> auto(Person person){
+        Page<Person> people = person2Repository.findByAuto(person,new PageRequest(0,10));
         return people;
     }
 }

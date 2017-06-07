@@ -13,3 +13,5 @@ rest api
 
 http://localhost:8080/save?name=w&address=shanghai&age=20
 
+http://localhost:8080/auto?address=shanghai&name=wang&age=29
+
